@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { FaGithubAlt, FaPlus, FaSpider } from 'react-icons/fa';
 import { Container, Form, SubmitButton, List } from './styles';
+import { Link } from 'react-router-dom';
 
 import api from '../../services/api';
 
@@ -90,9 +91,9 @@ export default class Main extends Component {
             <li key={repository.name}>
               {repository.name}
               <span>
-                <a href=''>
+                <Link to={`/repository/${ encodeURIComponent(repository.name)}`}>
                   Detalhes
-                </a>
+                </Link>
               </span>
             </li>
 
