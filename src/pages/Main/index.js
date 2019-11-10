@@ -8,9 +8,27 @@ import api from '../../services/api';
 export default class Main extends Component {
   state = {
     newRepo: '',
-    repositories: [{name: 'Augusto domenech'}],
+    repositories: [],
     loading: false,
   };
+
+  componentDidMount(){
+    const repositories = localStorage.getItem('repositories')
+
+    if (repositories) {
+      this.setState({
+        repositories: JSON.parse(repositories)
+      })
+    }
+  }
+
+  componentDidUpdate(_, prevState){
+    const { repositories } = this.state;
+
+    if (prevState !== repositories) {
+      localStorage.setItem('repositories', JSON.stringify(repositories))
+    }
+  }
 
   handleInputChange = e => {
     this.setState({
